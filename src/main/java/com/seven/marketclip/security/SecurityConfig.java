@@ -134,6 +134,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
         http.oauth2Login().loginPage("/login").successHandler(oauthHandler).userInfoEndpoint().userService(principalOauth2UserService());
         }
+        
+        //TODO 여기서 빈을 뺴고 컴포턴트로 만든 후 주입해서 가져오기
         @Bean
         public PrincipalOauth2UserService principalOauth2UserService() {
             return new PrincipalOauth2UserService(accountRepository,bCryptPasswordEncoder);

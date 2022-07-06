@@ -31,6 +31,7 @@ public class HttpResponse {
                         .response(responseCode.getHttpStatus().name())
                         .code(responseCode.name())
                         .message(responseCode.getMessage())
+                        //dto넣을 수 있게 ->
                         .build()
                 );
     }
