@@ -13,6 +13,7 @@ public enum ResponseCode {
 
     // 닉네임 확인
     NICKNAME_VALIDATION_SUCCESS(OK, "닉네임을 사용할 수 있습니다."),
+    NICKNAME_UPDATE_SUCCESS(OK, "닉네임 수정이 완료되었습니다.."),
 
     // 이메일 인증
     EMAIL_VALIDATION_SUCCESS(OK, "이메일 인증이 완료되었습니다."),
@@ -20,6 +21,7 @@ public enum ResponseCode {
 
     // 회원가입 완료
     SIGNUP_SUCCESS(CREATED, "회원가입이 완료되었습니다."),
+    PROFILEIMG_UPDATE_SUCCESS(OK, "프로필 사진 수정이 완료되었습니다."),
 
     // 게시글
     GOODS_POST_SUCCESS(CREATED, "게시글 작성이 완료되었습니다."),
@@ -38,7 +40,6 @@ public enum ResponseCode {
 
     INVALID_LOGIN(BAD_REQUEST, "이메일 또는 패스워드를 확인해 주세요."),
 
-
     EMAIL_ALREADY_SENT(BAD_REQUEST, "이미 이메일이 발송되었습니다."),
     EMAIL_ALREADY_EXPIRED(BAD_REQUEST, "이메일 인증시간이 지났습니다, 인증번호를 다시 발급해주세요."),
 
@@ -55,6 +56,9 @@ public enum ResponseCode {
 
     // validation, integrity 위반
     WRONG_VALIDATION_INTEGRITY(BAD_REQUEST, "validation 또는 무결성 위반."),
+
+    
+    
 
     /** 401 UNAUTHORIZED 인증되지 않은 사용자 */
     LOGIN_REQUIRED(UNAUTHORIZED, "로그인이 필요합니다."),
@@ -80,7 +84,8 @@ public enum ResponseCode {
     USER_ALREADY_EXISTS(CONFLICT, "이미 존재하는 사용자입니다."),
     DUPLICATE_RESOURCE(CONFLICT, "데이터가 이미 존재합니다."),
 
-    NICKNAME_ALREADY_EXISTS(CONFLICT, "이미 존재하는 닉네임입니다."),
+    EMAIL_ALREADY_EXISTS(CONFLICT, "이미 존재하는 이메일 입니다!"),
+    NICKNAME_ALREADY_EXISTS(CONFLICT, "이미 존재하는 닉네임 입니다!"),
 
     // 즐겨찾기
     BOOKMARK_ALREADY_EXIST(CONFLICT, "이미 찜 한 상품입니다.");

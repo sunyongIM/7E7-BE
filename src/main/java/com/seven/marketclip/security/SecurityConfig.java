@@ -117,29 +117,24 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         //TODO mvcMatchers 하고 authorizatino 차이
         http.authorizeHttpRequests()
                 .mvcMatchers("/**").permitAll()
-                .antMatchers("/", "/api/sign-up", "/api/refresh-re", "/api/email-validation").permitAll()
+                .antMatchers("/", "/api/sign-up", "/api/refresh-re", "/api/email-validation","/api/profile-img").permitAll()
                 .antMatchers("/login/oauth2/code/google", "/login/oauth2/code/naver", "/login/oauth2/code/kakao").permitAll()
-                .antMatchers("/api/manager").hasRole("USER")
+                .antMatchers("/api/manager","/api/profile-img").hasRole("USER")
                 .anyRequest().authenticated();
 
 
         http.oauth2Login().loginPage("/login").successHandler(oauthHandler).userInfoEndpoint().userService(principalOauth2UserService());
     }
 
-<<<<<<< HEAD
-        }
+
+
         
         //TODO 여기서 빈을 뺴고 컴포턴트로 만든 후 주입해서 가져오기
         @Bean
         public PrincipalOauth2UserService principalOauth2UserService() {
             return new PrincipalOauth2UserService(accountRepository,bCryptPasswordEncoder);
         }
-=======
-    @Bean
-    public PrincipalOauth2UserService principalOauth2UserService() {
-        return new PrincipalOauth2UserService(accountRepository, bCryptPasswordEncoder);
-    }
->>>>>>> 74193b19cd4740fcad552c5412a62eaea206cfbb
+
 
 
     //        http.authorizeRequests()
@@ -202,8 +197,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         skipPathList.add("GET,/api/goods");
         skipPathList.add("POST,/api/refresh-re");
         skipPathList.add("POST,/api/email-validation");
+
         skipPathList.add("POST,/api/sign-up");
-        
+
         // h2-console 허용
         skipPathList.add("GET,/h2-console/**");
         skipPathList.add("POST,/h2-console/**");

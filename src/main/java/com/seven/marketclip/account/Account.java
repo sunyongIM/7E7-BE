@@ -28,6 +28,8 @@ public class Account extends Timestamped {
     @Column(nullable = false)
     private String password;
 
+    private String profileImgUrl;
+
     @Column(nullable = false)
     @Enumerated(value = EnumType.STRING)
     private AccountRoleEnum role;
@@ -46,12 +48,13 @@ public class Account extends Timestamped {
     private List<Goods> goodsList;
 
     @Builder
-    public Account(String nickname, String email, String password, AccountRoleEnum role, AccountTypeEnum type ) {
+    public Account(String nickname, String email, String password, AccountRoleEnum role, AccountTypeEnum type,String profileImgUrl) {
         this.nickname =nickname;
         this.email=email;
         this.password=password;
         this.role=role;
         this.type=type;
+        this.profileImgUrl = profileImgUrl;
     }
 
     public Account(AccountReqDTO accountReqDTO){
@@ -77,5 +80,9 @@ public class Account extends Timestamped {
 
     //소셜에서 카카오만 이메일 값을 아이디 값으로 대체
     public void changeIdtoEmail(String id){this.email = id;}
+
+    //프로필 이미지 변경
+    public void changeProfileImg(String file){this.profileImgUrl = file;}
+    public void changeNickname(String nickname){this.nickname = nickname;}
 
 }

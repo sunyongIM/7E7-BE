@@ -126,6 +126,30 @@ public class EmailService {
         simpleMessage.setSubject("marketClip 이메일 인증");
 //        simpleMessage.setText("http://localhost:8080/api/sign/confirm-email?email="+email+"&emailToken="+emailToken);
         simpleMessage.setText("이메일 인증번호=" + emailToken);
+//        MimeMessage mimeMessage = javaMailSender.createMimeMessage();
+//        MimeMessageHelper simpleMessage = null;
+//        try {
+//            simpleMessage = new MimeMessageHelper(mimeMessage,false,"UTF-8");
+//            simpleMessage.setTo(email);
+//            simpleMessage.setSubject("marketClip 이메일 인증");
+////        simpleMessage.setText("http://localhost:8080/api/sign/confirm-email?email="+email+"&emailToken="+emailToken);
+//            simpleMessage.setText("이메일 인증번호=" + emailToken);
+//            simpleMessage.setText("<!DOCTYPE html>\n" +
+//                    "<html lang=\"en\">\n" +
+//                    "<head>\n" +
+//                    "    <meta charset=\"UTF-8\">\n" +
+//                    "    <title>Title</title>\n" +
+//                    "</head>\n" +
+//                    "<body>\n" +
+//                    "    안녕하세요. 카카오 소셜 로그인 테이스\n" +
+//                    "    <a href=\"http://localhost:8080/oauth2/authorization/kakao\">카카오</a>\n" +
+//                    "    <a href=\"http://localhost:8080/oauth2/authorization/google\">구글</a>\n" +
+//                    "    <a href=\"http://localhost:8080/oauth2/authorization/naver\">네이버</a>\n" +
+//                    "</body>\n" +
+//                    "</html>",true);
+//        } catch (MessagingException e) {
+//            throw new RuntimeException(e);
+//        }
         javaMailSender.send(simpleMessage);
     }
 
