@@ -25,5 +25,6 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
     protected ResponseEntity<HttpResponse> handleCustomException(CustomException e) {
         log.error("handleCustomException throw CustomException : {}", e.getResponseCode());
         return HttpResponse.toResponseEntity(e.getResponseCode());
+//        return new ResponseEntity(HttpStatus.MULTI_STATUS);
     }
 }

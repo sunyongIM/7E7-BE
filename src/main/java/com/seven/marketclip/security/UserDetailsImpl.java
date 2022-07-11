@@ -2,6 +2,7 @@ package com.seven.marketclip.security;
 
 
 import com.seven.marketclip.account.AccountRoleEnum;
+import lombok.Builder;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -22,32 +23,46 @@ public class UserDetailsImpl implements UserDetails, OAuth2User {
 
     private String password;
 
+    private String profileImgUrl;
+
     @Enumerated(value = EnumType.STRING)
     private AccountRoleEnum role;
 
-    //로그인 할 때, 필요한
-    public UserDetailsImpl(Long id, String password, String nickname,String email,AccountRoleEnum role){
+    @Builder
+    public UserDetailsImpl(Long id, String password, String nickname,String email,String profileImgUrl,AccountRoleEnum role){
         this.id = id;
         this.email = email;
         this.nickname = nickname;
         this.password = password;
         this.role = role;
+        this.profileImgUrl = profileImgUrl;
     }
+
+    //로그인 할 때, 필요한
+//    public UserDetailsImpl(Long id, String password, String nickname,String email,String profileImgUrl,AccountRoleEnum role){
+//        this.id = id;
+//        this.email = email;
+//        this.nickname = nickname;
+//        this.password = password;
+//        this.role = role;
+//        this.profileImgUrl = profileImgUrl;
+//    }
 
     //JWT 토큰 암호화, 복호화 때 필요한.
-    public UserDetailsImpl(Long id, String email,String nickname, AccountRoleEnum role){
-        this.id = id;
-        this.email = email;
-        this.nickname = nickname;
-        this.role = role;
-    }
+//    public UserDetailsImpl(Long id, String email,String profileImgUrl,String nickname, AccountRoleEnum role){
+//        this.id = id;
+//        this.email = email;
+//        this.nickname = nickname;
+//        this.role = role;
+//        this.profileImgUrl = profileImgUrl;
+//    }
 
     //카카오 로그인때 필요한.
-    public UserDetailsImpl(String email,String nickname,AccountRoleEnum role){
-        this.email = email;
-        this.nickname = nickname;
-        this.role = role;
-    }
+//    public UserDetailsImpl(String email,String nickname,AccountRoleEnum role){
+//        this.email = email;
+//        this.nickname = nickname;
+//        this.role = role;
+//    }
 
     public Long getId(){
         return this.id;
@@ -55,7 +70,8 @@ public class UserDetailsImpl implements UserDetails, OAuth2User {
     public AccountRoleEnum getRole(){
         return this.role;
     }
-    public String getEmail(){return this.email;}
+    public String getNickname(){return this.nickname;}
+    public String getProfileImgUrl(){return this.profileImgUrl;}
 
 
     @Override
@@ -65,7 +81,7 @@ public class UserDetailsImpl implements UserDetails, OAuth2User {
 
     @Override
     public String getUsername() {
-        return nickname;
+        return email;
     }
 
     @Override

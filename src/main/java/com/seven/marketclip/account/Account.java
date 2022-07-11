@@ -6,6 +6,7 @@ import com.seven.marketclip.goods.domain.Goods;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import javax.persistence.*;
 import java.util.List;
@@ -69,8 +70,8 @@ public class Account extends Timestamped {
     }
 
     //패스워드 인코드
-    public void encodePassword(String encodedPassword){
-        this.password = encodedPassword;
+    public void encodePassword(BCryptPasswordEncoder byCryptPasswordEncoder){
+        this.password = byCryptPasswordEncoder.encode(password);
     }
 
     //리프레쉬 토큰 변경
@@ -84,5 +85,6 @@ public class Account extends Timestamped {
     //프로필 이미지 변경
     public void changeProfileImg(String file){this.profileImgUrl = file;}
     public void changeNickname(String nickname){this.nickname = nickname;}
+    public void changePassword(String password){this.password = password;}
 
 }

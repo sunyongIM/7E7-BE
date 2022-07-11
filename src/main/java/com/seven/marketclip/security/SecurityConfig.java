@@ -3,6 +3,7 @@ package com.seven.marketclip.security;
 import com.seven.marketclip.account.AccountRepository;
 import com.seven.marketclip.account.oauth.OauthHandler;
 import com.seven.marketclip.account.oauth.PrincipalOauth2UserService;
+import com.seven.marketclip.exception.filter.CustomAuthenticationEntryPoint1;
 import com.seven.marketclip.security.filter.FormLoginFilter;
 import com.seven.marketclip.security.filter.JwtAuthFilter;
 import com.seven.marketclip.security.jwt.HeaderTokenExtractor;
@@ -43,6 +44,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     private final JwtDecoder jwtDecoder;
     private final OauthHandler oauthHandler;
     private final BCryptPasswordEncoder bCryptPasswordEncoder;
+
+    private final CustomAuthenticationEntryPoint1 customAuthenticationEntryPoint1;
 
 
 
@@ -109,7 +112,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 //        http.addFilter(corsFilter);
 //        http.addFilter(new JwtAuthenticationFilter(authenticationManager()));
 //        http.addFilter(new JwtAuthorizationFilter(authenticationManager(),accountRepository));
+
+        http.exceptionHandling().authenticationEntryPoint(customAuthenticationEntryPoint1);
+
         http
+//                .addFilterBefore("", formLoginFilter().getClass())
+//                .addFilterBefore(formLoginFilter(), UsernamePasswordAuthenticationFilter.class)
+
                 .addFilterBefore(formLoginFilter(), UsernamePasswordAuthenticationFilter.class)
                 .addFilterBefore(jwtFilter(), UsernamePasswordAuthenticationFilter.class);
 
@@ -155,6 +164,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         FormLoginFilter formLoginFilter = new FormLoginFilter(authenticationManager());
         formLoginFilter.setFilterProcessesUrl("/api/login");
         formLoginFilter.setAuthenticationSuccessHandler(formLoginSuccessHandler());
+        formLoginFilter.setAuthenticationFailureHandler(formLoginFailHandler());
         formLoginFilter.afterPropertiesSet(); //TODO 찾아보기 -> formLoginFilter.afterPropertiesSet
         return formLoginFilter;
     }
@@ -162,6 +172,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Bean
     public FormLoginSuccessHandler formLoginSuccessHandler() {
         return new FormLoginSuccessHandler(accountRepository);
+    }
+
+    @Bean
+    public FormLoginFailHandler formLoginFailHandler() {
+        return new FormLoginFailHandler();
     }
 
     @Bean

@@ -11,9 +11,12 @@ public enum ResponseCode {
     /** ( 200 OK / 201 CREATED ) 요청성공 */
     TEST_SUCCESS(OK, "테스트 결과 확인."),
 
+    // 비밀번호 수정
+    PASSWORD_VALIDATION_SUCCESS(OK, "비밀번호 수정이 완료되었습니다."),
+
     // 닉네임 확인
     NICKNAME_VALIDATION_SUCCESS(OK, "닉네임을 사용할 수 있습니다."),
-    NICKNAME_UPDATE_SUCCESS(OK, "닉네임 수정이 완료되었습니다.."),
+    NICKNAME_UPDATE_SUCCESS(OK, "닉네임 수정이 완료되었습니다."),
 
     // 이메일 인증
     EMAIL_VALIDATION_SUCCESS(OK, "이메일 인증이 완료되었습니다."),
@@ -37,6 +40,11 @@ public enum ResponseCode {
     INVALID_REGISTER_EMAIL(BAD_REQUEST, "이메일 형식이 유효하지 않습니다."),
     INVALID_REGISTER_PASSWORD(BAD_REQUEST, "비밀번호 형식이 유효하지 않습니다."),
     INVALID_REGISTER_USERNAME(BAD_REQUEST, "이름을 입력해 주세요."),
+    /***********************************************************************************/
+
+    //로그인 필터 ************************************************************************
+    LOGIN_FILTER_NULL(BAD_REQUEST, "로그인 필터 - 로그인 했을 때 값이 입력되지 않음."),
+    /***********************************************************************************/
 
     INVALID_LOGIN(BAD_REQUEST, "이메일 또는 패스워드를 확인해 주세요."),
 
@@ -44,10 +52,21 @@ public enum ResponseCode {
     EMAIL_ALREADY_EXPIRED(BAD_REQUEST, "이메일 인증시간이 지났습니다, 인증번호를 다시 발급해주세요."),
 
     UNVERIFIED_EMAIL(BAD_REQUEST, "이메일이 인증되지 않았습니다."),
+    
+    //VERIFICATION*********************************************************************
+    VERIFICATION_ID(BAD_REQUEST,"아이디가 존재하지 않습니다."),
+    VERIFICATION_EMAIL(BAD_REQUEST,"이메일이 존재하지 않습니다."),
+    VERIFICATION_NICKNAME(BAD_REQUEST,"닉네임이 존재하지 않습니다."),
+    /**********************************************************************************/
+    //
     INVALID_EMAIL_TOKEN(BAD_REQUEST, "이메일 인증번호가 일치하지 않습니다."),
 
+    //JWT, Refresh Token **************************************************************
     INVALID_REFRESH_TOKEN(BAD_REQUEST, "리프레시 토큰이 유효하지 않습니다."),
     MISMATCH_REFRESH_TOKEN(BAD_REQUEST, "리프레시 토큰의 유저 정보가 일치하지 않습니다."),
+    /**********************************************************************************/
+
+
 
     // 게시글 작성
     INVALID_GOODS_REQ(BAD_REQUEST, "게시글 형식을 확인해 주세요."),

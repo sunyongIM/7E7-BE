@@ -26,6 +26,8 @@ public class AccountReqDTO {
     @Length(min = 8, max = 20)
     private String password;
 
+//    private String imgUrl;
+
 
 
     @Builder

@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.transaction.Transactional;
 
 @Transactional
+//@Component
 @RequiredArgsConstructor
 public class FormLoginSuccessHandler extends SavedRequestAwareAuthenticationSuccessHandler {
 
