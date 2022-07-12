@@ -1,6 +1,5 @@
 package com.seven.marketclip.exception.filter;
 
-import com.seven.marketclip.exception.ResponseCode;
 import lombok.Getter;
 
 
@@ -8,9 +7,10 @@ import lombok.Getter;
 @Getter
 public class JwtCustomException extends RuntimeException {
 
-    private final ResponseCode responseCode;
+    private final String responseCode;
 
-    public JwtCustomException(ResponseCode responseCode) {
-        this.responseCode = responseCode;
+    public JwtCustomException(String str) {
+        this.responseCode = str;
+        System.out.println("asdasdassdaa1121212");
     }
 }

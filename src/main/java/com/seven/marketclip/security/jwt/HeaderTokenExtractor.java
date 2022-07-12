@@ -1,11 +1,11 @@
 package com.seven.marketclip.security.jwt;
 
+import com.seven.marketclip.exception.filter.JwtCustomException;
 import org.springframework.stereotype.Component;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.NoSuchElementException;
 
 @Component
 public class HeaderTokenExtractor {
@@ -30,7 +30,7 @@ public class HeaderTokenExtractor {
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
-            throw new NoSuchElementException("올바른 JWT 정보가 아닙니다.");
+            throw new JwtCustomException("올바른 JWT 정보가 아닙니다.");
         }
 
         /*

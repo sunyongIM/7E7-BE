@@ -139,6 +139,7 @@ public class JwtDecoder {
 
             jwt = verifier.verify(token);
         } catch (Exception e) {
+            
             log.error(e.getMessage());
         }
 

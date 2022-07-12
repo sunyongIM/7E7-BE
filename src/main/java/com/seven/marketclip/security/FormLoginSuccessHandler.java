@@ -10,6 +10,7 @@ import org.springframework.security.web.authentication.SavedRequestAwareAuthenti
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.transaction.Transactional;
+import java.io.IOException;
 
 @Transactional
 //@Component
@@ -42,7 +43,11 @@ public class FormLoginSuccessHandler extends SavedRequestAwareAuthenticationSucc
 
         response.addHeader(JWT_HEADER, TOKEN_TYPE + " " + token);
         response.addHeader(REFRESH_HEADER, TOKEN_TYPE + " " + refresh);
-
+        try {
+            response.getWriter().println("로그인 성공");
+        } catch (IOException e) {
+            throw new IllegalArgumentException("로그인 오류");
+        }
         System.out.println(response.getHeader(JWT_HEADER));
     }
 

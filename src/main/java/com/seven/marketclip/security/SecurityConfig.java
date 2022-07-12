@@ -113,19 +113,19 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 //        http.addFilter(new JwtAuthenticationFilter(authenticationManager()));
 //        http.addFilter(new JwtAuthorizationFilter(authenticationManager(),accountRepository));
 
-        http.exceptionHandling().authenticationEntryPoint(customAuthenticationEntryPoint1);
+//        http.exceptionHandling().authenticationEntryPoint(customAuthenticationEntryPoint1);
 
         http
 //                .addFilterBefore("", formLoginFilter().getClass())
 //                .addFilterBefore(formLoginFilter(), UsernamePasswordAuthenticationFilter.class)
-
+//                .addFilterBefore(refreshFilter, UsernamePasswordAuthenticationFilter.class)
                 .addFilterBefore(formLoginFilter(), UsernamePasswordAuthenticationFilter.class)
                 .addFilterBefore(jwtFilter(), UsernamePasswordAuthenticationFilter.class);
 
 
         //TODO mvcMatchers 하고 authorizatino 차이
         http.authorizeHttpRequests()
-                .mvcMatchers("/**").permitAll()
+//                .mvcMatchers("/**").permitAll()
                 .antMatchers("/", "/api/sign-up", "/api/refresh-re", "/api/email-validation","/api/profile-img").permitAll()
                 .antMatchers("/login/oauth2/code/google", "/login/oauth2/code/naver", "/login/oauth2/code/kakao").permitAll()
                 .antMatchers("/api/manager","/api/profile-img").hasRole("USER")
@@ -209,10 +209,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         // 회원 관리 API 허용
         skipPathList.add("GET,/");
         skipPathList.add("GET,/api/refresh-re");
-        skipPathList.add("GET,/api/goods");
-        skipPathList.add("POST,/api/refresh-re");
-        skipPathList.add("POST,/api/email-validation");
+//        skipPathList.add("POST,/api/refresh-re");
 
+        skipPathList.add("GET,/api/goods");
+        skipPathList.add("POST,/api/email-validation");
         skipPathList.add("POST,/api/sign-up");
 
         // h2-console 허용

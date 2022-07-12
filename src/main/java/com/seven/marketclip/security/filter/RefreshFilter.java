@@ -44,7 +44,7 @@ public class RefreshFilter implements Filter {
             httpServletResponse.getWriter().println("RefreshToken - No Header");
             httpServletResponse.setStatus(400);
             System.out.println("헤더가 없음");
-            throw new IllegalArgumentException("리프레쉬 토큰 - 헤더가 존재하지 않습니다.");
+            throw new ServletException("리프레쉬 토큰 - 헤더가 존재하지 않습니다.");
         }
 
         //TODO Decoder에 있는거 같은 함수로 빼기
@@ -83,6 +83,7 @@ public class RefreshFilter implements Filter {
         httpServletResponse.addHeader(FormLoginSuccessHandler.JWT_HEADER, FormLoginSuccessHandler.TOKEN_TYPE + " " + reissuanceJWT);
         httpServletResponse.addHeader(FormLoginSuccessHandler.REFRESH_HEADER, FormLoginSuccessHandler.TOKEN_TYPE + " " + reissuanceRefreshToken);
         System.out.println("리프레시 필터 끝");
+        return;
     }
     
 }

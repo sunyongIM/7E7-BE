@@ -11,9 +11,6 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
-
-import static com.seven.marketclip.exception.ResponseCode.LOGIN_FILTER_NULL;
 
 
 public class FormLoginFilter extends UsernamePasswordAuthenticationFilter{
@@ -39,17 +36,13 @@ public class FormLoginFilter extends UsernamePasswordAuthenticationFilter{
             System.out.println(authRequest.getPrincipal());
         } catch (Exception e) {
             //여기서 예외가 어쩔 때 일어날까? -> 아무것도 입력하지 않았을 때
-            throw new JwtCustomException(LOGIN_FILTER_NULL);
+            throw new JwtCustomException("LOGIN_FILTER_NULL");
             //여기서 왜 응답메시지가 포스트맨에 뜨지 않을까?
         }
 
         setDetails(request, authRequest);
         System.out.println("로그인 필터 2");
-        try {
-            response.getWriter().println("asdasddsda");
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
+
         return this.getAuthenticationManager().authenticate(authRequest);
     }
 }
