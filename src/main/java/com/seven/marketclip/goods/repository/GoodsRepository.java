@@ -18,6 +18,7 @@ public interface GoodsRepository extends JpaRepository<Goods, Long> {
 
     List<Goods> findAllByOrderByWishCountDesc();
 
+    List<Goods>findAllByAccount (Account account);
 
     @Modifying
     @Query("UPDATE Goods p SET p.viewCount = p.viewCount + 1 where p.id = :id")

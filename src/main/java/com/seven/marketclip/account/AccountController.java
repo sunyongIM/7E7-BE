@@ -86,9 +86,6 @@ public class AccountController {
             System.out.println(sd.getTitle());
         }
 
-
-
-
         return null;
     }
 

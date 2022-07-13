@@ -1,3 +1,6 @@
 [2022-07-13 00:36:13:652][restartedMain] INFO  c.s.m.MarketclipApplication - Starting MarketclipApplication using Java 11.0.14 on DESKTOP-01UVN8U with PID 32860 (D:\Development\intellij_spring\marketclip\build\classes\java\main started by imsun in D:\Development\intellij_spring\marketclip)
 [2022-07-13 00:36:13:653][restartedMain] INFO  c.s.m.MarketclipApplication - The following 1 profile is active: "dev"
 [2022-07-13 00:36:18:5575][restartedMain] INFO  c.s.m.MarketclipApplication - Started MarketclipApplication in 5.362 seconds (JVM running for 6.138)
+[2022-07-14 01:13:15:604][restartedMain] INFO  c.s.m.MarketclipApplication - Starting MarketclipApplication using Java 11.0.15.1 on DESKTOP-JB61UUB with PID 24720 (C:\java_workspace\IntelliJ_workspace\marketclip\build\classes\java\main started by tlsdn in C:\java_workspace\IntelliJ_workspace\marketclip)
+[2022-07-14 01:13:15:605][restartedMain] INFO  c.s.m.MarketclipApplication - No active profile set, falling back to 1 default profile: "default"
+[2022-07-14 01:13:21:6467][restartedMain] INFO  c.s.m.MarketclipApplication - Started MarketclipApplication in 6.263 seconds (JVM running for 7.096)
