@@ -1,5 +1,8 @@
 package com.seven.marketclip.account;
 
+import lombok.Getter;
+
+@Getter
 public enum AccountRoleEnum {
     USER(Authority.USER),
     // 사용자 권한

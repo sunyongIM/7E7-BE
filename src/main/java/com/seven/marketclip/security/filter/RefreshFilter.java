@@ -50,7 +50,7 @@ public class RefreshFilter implements Filter {
         String refresh = httpServletRequest.getHeader("X-REFRESH-TOKEN");
 
         if (refresh == null) {
-            httpServletResponse.getWriter().println("RefreshFilter-Refresh-No_Header");
+            httpServletResponse.getWriter().print("RefreshFilter-Refresh-No_Header");
             httpServletResponse.setStatus(400);
             System.out.println("헤더가 없음");
             throw new IllegalArgumentException("리프레쉬 토큰 - 헤더가 존재하지 않습니다.");
@@ -81,7 +81,7 @@ public class RefreshFilter implements Filter {
 
         Date now = new Date();
         if (expiredDate.before(now)) {
-            httpServletResponse.getWriter().println("RefreshFilter - Refresh - expired");
+            httpServletResponse.getWriter().print("RefreshFilter - Refresh - expired");
             httpServletResponse.setStatus(400);
             throw new IllegalArgumentException("리프레쉬 필터 - 리프레쉬 토큰 만료됨.");
         }
@@ -92,14 +92,14 @@ public class RefreshFilter implements Filter {
 
         Optional<Account> accounts = accountRepository.findById(id);
         if(accounts.isEmpty()){
-            httpServletResponse.getWriter().println("RefreshFilter - ID - Not exist");
+            httpServletResponse.getWriter().print("RefreshFilter - ID - Not exist");
             httpServletResponse.setStatus(400);
             throw new IllegalArgumentException("리프레쉬 필터 - 아이디 존재하지 않음.");
         }
         Account account = accounts.get();
 
         if (!refresh.equals(account.getRefreshToken())) {
-            httpServletResponse.getWriter().println("RefreshToken - Not ExistDB");
+            httpServletResponse.getWriter().print("RefreshToken - Not ExistDB");
             httpServletResponse.setStatus(400);
             throw new IllegalArgumentException("리프레쉬 토큰 - 데이터 베이스에 없음.");
         }
